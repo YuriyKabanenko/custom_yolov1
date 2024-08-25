@@ -16,7 +16,6 @@ def get_channels_array(img_array):
     blue_channel = img_array[:, :, 2]
     return np.stack([red_channel, green_channel, blue_channel])
 
-
 img_array = []
 label_array = []
 
@@ -69,7 +68,13 @@ for i in range(len(label_array)):
 backbone = bb.BackBone()
 
 img_names = ut.get_filenames_in_folder(root_images_folder)
+maps = []
 
-maps = backbone.get_feature_maps(root_images_folder + img_names[5])
+for i in range(len(img_names)):
+    maps.append(backbone.get_feature_maps(root_images_folder + img_names[i]))
+    ut.plot_feature_maps(maps[i])  
     
-ut.plot_feature_maps(maps)   
+ut.save_feature_maps(maps)    
+    
+loaded_feature_maps = ut.load_feature_maps()    
+ 

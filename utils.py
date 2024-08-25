@@ -3,7 +3,7 @@ import utils as ut
 import math
 import os
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 IMAGE_SIZE = 448
 CELL_SIZE = 64
@@ -16,6 +16,14 @@ class ImageObject(Enum):
     WATCH = 4
     CAT = 5
     DOG = 6
+
+def save_feature_maps(feature_maps):
+    np.save('feature_maps.npy', feature_maps)
+        
+def load_feature_maps():
+    data = np.load('feature_maps.npy')
+    return data
+    
  
 def plot_feature_maps(feature_maps, num_cols=16):
     num_feature_maps = feature_maps.shape[-1]
