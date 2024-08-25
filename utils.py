@@ -1,0 +1,48 @@
+from enum import Enum
+import utils as ut
+import math
+import os
+import matplotlib.pyplot as plt
+
+
+IMAGE_SIZE = 448
+CELL_SIZE = 64
+
+class ImageObject(Enum):
+    CAR = 0
+    WOMAN = 1
+    MAN = 2
+    MOBILE = 3
+    WATCH = 4
+    CAT = 5
+    DOG = 6
+ 
+def plot_feature_maps(feature_maps, num_cols=16):
+    num_feature_maps = feature_maps.shape[-1]
+    num_rows = num_feature_maps // num_cols + (num_feature_maps % num_cols != 0)
+    
+    plt.figure(figsize=(num_cols * 2, num_rows * 2))
+    for i in range(num_feature_maps):
+        plt.subplot(num_rows, num_cols, i + 1)
+        plt.imshow(feature_maps[0, :, :, i], cmap='viridis')
+        plt.axis('off')
+    plt.show()    
+ 
+        
+def get_filenames_in_folder(directory_path):
+    file_names = []
+
+    for root, dirs, files in os.walk(directory_path):
+        for file in files:
+            file_names.append(file)
+            
+    return file_names        
+    
+    
+def get_object_cell_indexes(x_coor, y_coor):
+    x_coordinate_in_pixels = x_coor * ut.IMAGE_SIZE
+    y_coordinate_in_pixels = y_coor * ut.IMAGE_SIZE
+    object_cell_column = math.floor(x_coordinate_in_pixels / ut.CELL_SIZE)
+    object_cell_row = math.floor(y_coordinate_in_pixels / ut.CELL_SIZE)
+    return object_cell_row, object_cell_column      
+    

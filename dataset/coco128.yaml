@@ -1,0 +1,13 @@
+path: /content/data_deshi_name/images
+train: /content/data_deshi_name/images/training
+val: /content/data_deshi_name/images/val
+
+# Classes
+names:
+  0: car
+  1: woman
+  2: man
+  3: mobile
+  4: watch
+  5: cat
+  6: dog
