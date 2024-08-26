@@ -40,6 +40,8 @@ class BackBone:
         model.add(layers.Conv2D(1024, (3, 3), strides=(1, 1), activation='relu', padding='same',))
         
         self.model = model
+        self.train_model = None
+        
         
         print(self.model.summary())
  
@@ -50,6 +52,14 @@ class BackBone:
         image = np.expand_dims(image, axis=0)
         maps = self.model.predict(image)
         return maps
+    
+    def flatten_feature_maps(self):
+        self.train_model = models.Sequential()
+        self.train_model.add(layers.Flatten())
+        self.train_model.add()
+    
+    
+    
     
     
         

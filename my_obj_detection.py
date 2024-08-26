@@ -29,7 +29,6 @@ for subdir_name in os.listdir(root_label_folder):
     file_path = os.path.join(root_label_folder, subdir_name)
     file_path = file_path.replace('\\', '/')
     
-    # Initialize lists to hold data for all objects in the current file
     obj_classes = []
     x_coors = []
     y_coors = []
@@ -65,16 +64,16 @@ for i in range(len(img_array)):
 for i in range(len(label_array)):
     grid_array[i].set_label(label_array[i])
 
-backbone = bb.BackBone()
+# backbone = bb.BackBone()
 
-img_names = ut.get_filenames_in_folder(root_images_folder)
-maps = []
+# img_names = ut.get_filenames_in_folder(root_images_folder)
+# maps = []
 
-for i in range(len(img_names)):
-    maps.append(backbone.get_feature_maps(root_images_folder + img_names[i]))
-    ut.plot_feature_maps(maps[i])  
+# for i in range(len(img_names)):
+#     maps.append(backbone.get_feature_maps(root_images_folder + img_names[i]))
+#     ut.plot_feature_maps(maps[i])  
     
-ut.save_feature_maps(maps)    
+# ut.save_feature_maps(maps)    
     
 loaded_feature_maps = ut.load_feature_maps()    
  
