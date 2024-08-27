@@ -40,7 +40,7 @@ for subdir_name in os.listdir(root_label_folder):
         for line in lines:
             parts = line.strip().split()
             if len(parts) == 5:
-                obj_class = int(parts[0])
+                obj_class = int(parts[0]) + 1
                 x_coor = float(parts[1])            
                 y_coor = float(parts[2])            
                 width = float(parts[3])
@@ -64,7 +64,7 @@ for i in range(len(img_array)):
 for i in range(len(label_array)):
     grid_array[i].set_label(label_array[i])
 
-# backbone = bb.BackBone()
+backbone = bb.BackBone()
 
 # img_names = ut.get_filenames_in_folder(root_images_folder)
 # maps = []
@@ -76,4 +76,15 @@ for i in range(len(label_array)):
 # ut.save_feature_maps(maps)    
     
 loaded_feature_maps = ut.load_feature_maps()    
- 
+
+prediction_vectors = []
+
+for i in range(len(grid_array)):
+    img_vector = []
+    for j in range(49):
+        img_vector.append(grid_array[i].grid[0][j].get_prediction_vector())
+    prediction_vectors.append(img_vector)
+
+
+
+

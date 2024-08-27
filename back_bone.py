@@ -45,7 +45,6 @@ class BackBone:
         
         print(self.model.summary())
  
-        
     def get_feature_maps(self, image_path):
         image = load_img(image_path)
         image = img_to_array(image)
@@ -56,7 +55,9 @@ class BackBone:
     def flatten_feature_maps(self):
         self.train_model = models.Sequential()
         self.train_model.add(layers.Flatten())
-        self.train_model.add()
+        self.train_model.add(layers.Dense(4096, activation='relu'))
+        self.train_model.add(layers.Dense(1470, activation='relu'))
+        self.train_model.add(layers.Reshape((7, 7, 30)))
     
     
     

@@ -9,13 +9,26 @@ IMAGE_SIZE = 448
 CELL_SIZE = 64
 
 class ImageObject(Enum):
-    CAR = 0
-    WOMAN = 1
-    MAN = 2
-    MOBILE = 3
-    WATCH = 4
-    CAT = 5
-    DOG = 6
+    CAR = 1
+    WOMAN = 2
+    MAN = 3
+    MOBILE = 4
+    WATCH = 5
+    CAT = 6
+    DOG = 7
+
+
+def get_one_hot_encoded(obj):
+    one_hot_vector = []
+    
+    for imgObject in ImageObject:
+        if imgObject.value == obj:
+            one_hot_vector.append(1)
+        else:
+            one_hot_vector.append(0)
+            
+    return one_hot_vector         
+            
 
 def save_feature_maps(feature_maps):
     np.save('feature_maps.npy', feature_maps)
